@@ -19,34 +19,27 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin', 'AdminController@index')->name('admin');
+//Route::get('/admin', 'AdminController@index')->name('admin'); //Will use when setting up a new guard
 
 Route::prefix('home')->group(function(){
-    Route::group(['middleware' => ['role:superadmin']], function(){
+    Route::group(['middleware' => ['role:superuser']], function(){
       Route::resource('Permissions', 'PermissionsCont');
-      Route::get('Permissions', 'PermissionsCont@index')->name('permission');
-      Route::get('Permissions/create', 'PermissionsCont@permissionForm')->name('permissionCreate');
-      Route::post('Permissions/create', 'PermissionsCont@store')->name('storePermission');
-      Route::get('Permissions/{Permission}/edit', 'PermissionsCont@edit');
-      Route::post('Permissions/{data}', 'PermissionsCont@update');
-      Route::get('Permissions/{Permission}', 'PermissionsCont@destroy');
       Route::resource('Roles', 'RolesController');
-      Route::get('Roles', 'RolesController@index')->name('roles');
-      Route::get('Roles/create', 'RolesController@rolesForm')->name('roleCreate');
-      Route::post('Roles/create', 'RolesController@store')->name('storeRole');
-      Route::get('Roles/show/{Role}', 'RolesController@show')->name('showSingleRecord');
-      Route::get('Roles/{Role}/edit', 'RolesController@edit');
-      Route::post('Roles/{Role}', 'RolesController@update');
-      Route::get('Roles/{Role}', 'RolesController@destroy');
-      Route::resource('user', 'UserController');
-      Route::get('user', 'UserController@index')->name('showUsers');
-      Route::get('user/create', 'UserController@showCreateUserForm')->name('createUser');
-      Route::post('user/create', 'UserController@store')->name('storeUser');
-      Route::get('user/{user}/edit', 'UserController@edit');
-      Route::get('user/show/{user}', 'UserController@show');
-      Route::post('user/{user}', 'UserController@update');
-      Route::get('user/{user}', 'UserController@destroy');
       Route::resource('companies', 'CompanyController');
-      Route::get('companies', 'CompanyController@index')->name('allCompanies');
     });
+    Route::resource('Properties', 'PropertyController');
+    Route::resource('Agents', 'AgentsController');
+    Route::resource('Tasks', 'TasksController');
+    Route::resource('Transaction-type', 'TransactionTypeController');
+    Route::resource('Transactions', 'TransactionsController');
+    Route::resource('Invoices', 'InvoiceController');
+    Route::get('Transaction-type/destroy/{Transaction_type}', 'TransactionTypeController@destroy');
+    Route::get('Tasks/create/{property}', 'TasksController@taskForm');
+    Route::get('Transactions/create/{property}', 'TransactionsController@newTransaction');
+    Route::get('Properties/restore/{property}', 'PropertyController@restore');
+    Route::get('/{property}','HomeController@restore');
+    Route::get('Properties/kill/{property}', 'PropertyController@kill');
+    Route::get('home/companies', 'CompanyController@destroySession')->name('destroySession');
+    Route::post('Properties/filter', 'FilterController@filter')->name('filterProperty');
+    Route::get('Properties/destroy/{property}', 'PropertyController@destroy');
 });

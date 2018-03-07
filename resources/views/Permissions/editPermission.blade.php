@@ -20,12 +20,13 @@
         <div class="panel-heading">Edit</div>
         <div class="panel-body">
           <div class="panel-body">
-            <a type="button" class="btn btn-warning btn-sm" href="{{route('permission')}}">Back</a>
+            <a type="button" class="btn btn-warning btn-sm" href="{{ url('home/Permissions') }}"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
             <br>
             <br>
             <br>
-            <form action="{{URL::to('home/Permissions/'.$data->id)}}" method="post">
+            <form action="{{ route('Permissions.update', $data->id) }}" method="post">
               {{ csrf_field() }}
+              <input type="hidden" name="_method" value="PUT">
               <div class="form-group">
                 <label for="Name">Name</label>
                 <input type="text" name="permission_name" class="form-control col-md-10" value="{{ $data->name }}" />

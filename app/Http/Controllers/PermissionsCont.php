@@ -21,11 +21,6 @@ class PermissionsCont extends Controller
         $permission = Permission::all();
         return view('Permissions', compact('permission'));
     }
-
-    public function permissionForm()
-    {
-      return view('Permissions/create');
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -33,7 +28,7 @@ class PermissionsCont extends Controller
      */
     public function create()
     {
-        //
+        return view('Permissions/create');
     }
 
     /**
@@ -46,7 +41,7 @@ class PermissionsCont extends Controller
     {
         $permission = Permission::create(['name' => $request->permission_name]);
         if ($permission){
-          return redirect('home/Permissions');
+          return redirect('home/Permissions')->with('sucess_message', 'Permission Added Successfully!');
         }
     }
 

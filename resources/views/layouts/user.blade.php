@@ -43,37 +43,71 @@
         <div id="side-menu">
           <ul>
             <li>
-              <a href="{{ route('admin') }}">
+              <a href="{{ route('home') }}">
                 <i class="fa fa-tachometer" aria-hidden="true"></i>
                 <span>Dashboard</span>
               </a>
             </li>
-            @hasrole('superadmin')
+            @hasrole('superuser')
             <li>
-              <a href="{{ route('permission') }}">
+              <a href="{{ url('home/Permissions') }}">
                 <i class="fa fa-user-plus"></i>
                 <span>Permissions</span>
               </a>
             </li>
             <li>
-              <a href="{{ route('roles') }}">
+              <a href="{{ route('Roles.index') }}">
                 <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                 <span>Roles</span>
               </a>
             </li>
             <li>
-              <a href="{{ route('showUsers') }}" style="word-spacing: 1px;">
-                <i class="fa fa-users"></i>
-                <span>Manage Users</span>
-              </a>
-            </li>
-            <li>
-              <a href="{{ route('allCompanies') }}">
+              <a href="{{ route('companies.index') }}">
                 <i class="fa fa-building"></i>
                 <span>Companies</span>
               </a>
             </li>
             @endhasrole
+            <li>
+              <a href="{{ route('Properties.index') }}">
+                <i class="fa fa-home" aria-hidden="true"></i>
+                <span>Properties</span>
+              </a>
+            </li>
+            @hasrole('admin')
+            <li>
+              <a href="{{ route('Agents.index') }}">
+                <i class="fa fa-user-o" aria-hidden="true"></i>
+                <span>Agents</span>
+              </a>
+            </li>
+            @endhasrole
+            <li>
+              <a href="{{ route('Tasks.index') }}">
+                <i class="fa fa-file" aria-hidden="true"></i>
+                <span>Tasks</span>
+              </a>
+            </li>
+            @hasrole('admin')
+            <li>
+              <a href="{{ route('Transaction-type.index') }}">
+                <i class="fa fa-exchange" aria-hidden="true"></i>
+                <span>Types</span>
+              </a>
+            </li>
+            @endhasrole
+            <li>
+              <a href="{{ route('Transactions.index') }}">
+                <i class="fa fa-dollar" aria-hidden="true"></i>
+                <span>Transactions</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('Invoices.index') }}">
+                <i class="fa fa-address-book" aria-hidden="true"></i>
+                <span>Invoices</span>
+              </a>
+            </li>
               <li>
                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
@@ -96,5 +130,15 @@
         @show
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript">
+    // $('#transaction-type').on('show.bs.modal', function (event) {
+    //   var button = $(event.relatedTarget) // Button that triggered the modal
+    //   var id = button.data('id') // Extract info from data-* attributes
+    //   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    //   // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    //   var modal = $(this)
+    //   modal.find('.modal-body #company').val(id);
+    //   })
+    </script>
   </body>
 </html>

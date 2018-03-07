@@ -19,11 +19,11 @@
       <div class="panel panel-primary">
         <div class="panel-heading">Edit Role</div>
         <div class="panel-body">
-          <a type="button" class="btn btn-warning btn-sm" href="{{route('roles')}}"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
+          <a type="button" class="btn btn-warning btn-sm" href="{{ route('Roles.index') }}"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
           <br>
           <br>
           <br>
-          <form action="{{URL::to('home/Roles/'.$role->id)}}" method="post">
+          <form action="{{ route('Roles.update', $role->id) }}" method="post">
             {{ csrf_field() }}
             <div class="form-group">
               <label for="Name">Name</label>
@@ -32,11 +32,12 @@
             <div class="form-group">
               <label>Permissions</label>
               <select multiple class="form-control" name="permissions[]" required>
-                @foreach($permissions as $p)
-                <option value="{{$p->name}}">{{$p->name}}</option>
-                @endforeach
+                <option value="Approve-property">Approve-property</option>
+                <option value="Task-transactions-all">Task-transactions-all</option>
+                <option value="Invoice-property">Invoice-property</option>
               </select>
             </div>
+            <input type="hidden" name="_method" value="PUT">
             <p>Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</p>
             <br>
             <input type="submit" class="btn btn-success btn-md pull-right" value="Update">

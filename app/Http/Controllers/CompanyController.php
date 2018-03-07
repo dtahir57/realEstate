@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Company;
+use Session;
+use App\User;
+use DB;
+use App\Property;
 class CompanyController extends Controller
 {
     /**
@@ -46,7 +50,12 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        //
+        $company = Company::find($id);
+        Session::put('company_id', $company->id);
+        $user = User::where('company_id', $company->id)->first();
+        $roles = $user->getRoleNames();
+        $properties = Property::onlyTrashed()->where('company_id', $company->id)->get();
+        return view('companies/Company', compact('user', 'roles', 'properties'));
     }
 
     /**
@@ -81,5 +90,11 @@ class CompanyController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function destroySession() {
+      session()->forget('company_id');
+      return redirect('home/companies');
+      //session()->flush();
     }
 }

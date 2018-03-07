@@ -19,14 +19,14 @@
       <div class="panel panel-primary">
         <div class="panel-heading">Create New Role</div>
         <div class="panel-body">
-          <a type="button" class="btn btn-warning btn-sm" href="{{route('roles')}}"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
+          <a type="button" class="btn btn-warning btn-sm" href="{{ route('Roles.index') }}"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
           <br>
           <br>
           <br>
           @foreach($errors->all() as $error)
             <li class="alert alert-danger">{{$error}}</li>
           @endforeach
-          <form action="{{ route('storeRole') }}" method="post">
+          <form action="{{ route('Roles.store') }}" method="post">
             {{ csrf_field() }}
             <div class="form-group">
               <label for="Name">Name</label>
@@ -35,9 +35,9 @@
             <div class="form-group">
               <label>Permissions</label>
               <select multiple class="form-control" name="permissions[]" required>
-                @foreach($permission as $p)
-                <option value="{{$p->name}}">{{$p->name}}</option>
-                @endforeach
+                <option value="Approve-property">Approve-property</option>
+                <option value="Task-transactions-all">Task-transactions-all</option>
+                <option value="Invoice-property">Invoice-property</option>
               </select>
             </div>
             <p>Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</p>

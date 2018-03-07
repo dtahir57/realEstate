@@ -19,11 +19,11 @@
       <div class="panel panel-primary">
         <div class="panel-heading">Permissions</div>
         <div class="panel-body">
-          <a type="button" class="btn btn-warning btn-sm" href="{{route('permission')}}"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
+          <a type="button" class="btn btn-warning btn-sm" href="{{ url('home/Permissions') }}"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
           <br>
           <br>
           <br>
-          <form action="{{ route('storePermission') }}" method="post">
+          <form action="{{ route('Permissions.store') }}" method="post">
             {{ csrf_field() }}
             <div class="form-group">
               <label for="Name">Name</label>

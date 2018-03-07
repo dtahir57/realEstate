@@ -24,12 +24,6 @@ class RolesController extends Controller
         $roles = Role::all();
         return view('Roles', compact('roles'));
     }
-
-    public function rolesForm()
-    {
-      $permission = Permission::all();
-      return view('Roles/create', compact('permission'));
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -37,7 +31,7 @@ class RolesController extends Controller
      */
     public function create()
     {
-        //
+        return view('Roles/create');
     }
 
     /**

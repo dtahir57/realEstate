@@ -77,8 +77,6 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-        $permissions = Permission::all();
-        $user->givePermissionTo($permissions);
         $user->assignRole('admin');
         return $user;
     }

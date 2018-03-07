@@ -58,9 +58,7 @@
       @endforeach
       <h4>Below are the permission name(s) assigned for this or these role(s)</h4>
       <div class="tab">
-          @if (auth::user()->can('Approve-property'))
             <button class="tablinks" onclick="openCity(event, 'Approve-property')">Drafts</button>
-          @endif
           @if(auth::user()->can('Task-transactions-own'))
             <button class="tablinks" onclick="openCity(event, 'Task-transactions-own')">Transcations</button>
           @endif
@@ -73,8 +71,32 @@
       </div>
 
       <div id="Approve-property" class="tabcontent">
-        <h3>Approve-property</h3>
-        <p>Approve-property Module</p>
+        @if (session('restore_msg'))
+          <li class="alert alert-success">{{session('restore_msg')}}</li>
+        @endif
+        <h3>Approve properties</h3>
+        <div class="table table-responsive">
+          <table class="table table-bordered">
+            <tr>
+              <th>#</th>
+              <th>Property Name</th>
+              <th>Property Address</th>
+              @if (auth::user()->can('Approve-property'))
+              <th>Approve</th>
+              @endif
+            </tr>
+            @foreach($properties as $property)
+            <tr>
+              <td>{{$property->id}}</td>
+              <td>{{$property->property_title}}</td>
+              <td>{{$property->property_address}}</td>
+              @if (auth::user()->can('Approve-property'))
+              <td><a type="button" href="{{ url('home/'.$property->id) }}" class="btn btn-success btn-sm"><i class="fa fa-check"></i> Approve</a> </td>
+              @endif
+            </tr>
+            @endforeach
+          </table>
+        </div>
       </div>
 
       <div id="Task-transactions-all" class="tabcontent">

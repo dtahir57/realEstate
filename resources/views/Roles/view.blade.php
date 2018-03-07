@@ -20,7 +20,7 @@
         <div class="panel-heading">All Roles</div>
         <div class="panel-body">
           <div class="panel-body">
-            <a type="button" class="btn btn-warning btn-sm" href="{{route('roles')}}"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
+            <a type="button" class="btn btn-warning btn-sm" href="{{ route('Roles.index') }}"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
             <br>
             <br>
             <br>
