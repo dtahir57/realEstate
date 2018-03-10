@@ -14,7 +14,7 @@ class CompanyIdToUsers extends Migration
     public function up()
     {
         Schema::table('users', function($table){
-          $table->integer('company_id')->unsigned()->after('id');
+          $table->integer('company_id')->nullable()->unsigned()->after('id');
           $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
         });
     }

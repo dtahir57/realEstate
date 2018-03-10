@@ -12,9 +12,8 @@ class superAdminByDefault extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-          'name' => 'Super Admin',
-          'company_id' => 1,
-          'email' => 'superadmin@gmail.com',
+          'name' => 'Super User',
+          'email' => 'superuser@gmail.com',
           'password' => bcrypt('password'),
         ]);
     }
